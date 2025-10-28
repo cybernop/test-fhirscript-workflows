@@ -1,0 +1,21 @@
+{
+    "releases": [
+        {
+            "version": "0.1.0",
+            "requirements": [
+                {
+                    "title": "test",
+                    "key": "REQ-33366CJZ",
+                    "actor": [
+                        ""
+                    ],
+                    "version": 1,
+                    "release_status": "NEW",
+                    "status": "ACTIVE",
+                    "conformance": "",
+                    "path": "index.html"
+                }
+            ]
+        }
+    ]
+}
