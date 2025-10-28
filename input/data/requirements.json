@@ -8,12 +8,12 @@
         "release_status": "NEW",
         "status": "ACTIVE",
         "source": "./input/pagecontent/index.md",
-        "text": "test2",
+        "text": "test23",
         "conformance": "",
         "created": "2025-10-28T16:20:03.743034",
-        "modified": "2025-10-28T15:50:28.260297",
-        "date": "2025-10-28T15:50:28.260311",
-        "content_hash": "e8f86b0d08dab66e74311d9945bdb18ffb24cfc040dfa97789a07292f8d5471c",
+        "modified": "2025-10-28T16:09:19.290524",
+        "date": "2025-10-28T16:09:19.290535",
+        "content_hash": "11a6bc6459fcc6751eee9390a5c55fc9b2ace76d8ece813db4dfded2f7e9380c",
         "path": "index.html",
         "release": "0.1.0"
     }
