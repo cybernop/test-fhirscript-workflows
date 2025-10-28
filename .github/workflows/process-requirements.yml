@@ -1,11 +1,10 @@
-name: Build Profiles
+name: Process Requirements
 
 on:
   push:
     paths:
-      - "**/build-profiles.yml"
-      - "**.fsh"
-      - "**/sushi-config.yaml"
+      - "**/process-requirements.yml"
+      - "**.md"
 
   workflow_dispatch:
 
@@ -14,16 +13,16 @@ permissions:
 
 jobs:
   build-profiles:
-    name: Build Profiles
+    name: Process Requirements
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install pipx and npm
+      - name: Install pipx
         run: |
           sudo apt update
-          sudo apt install pipx nodejs npm
+          sudo apt install pipx
           pipx ensurepath
         shell: bash
 
@@ -32,11 +31,11 @@ jobs:
         shell: bash
 
       - name: Install FSH Sushi
-        run: fhirscripts install --sushi
+        run: fhirscripts install --sushi --igtools
         shell: bash
 
       - name: Build profiles
-        run: fhirscripts build defs
+        run: fhirscripts build defs --only-req
         shell: bash
 
       - name: Push built profiles
@@ -44,8 +43,8 @@ jobs:
           if [[ `git status --porcelain` ]]; then
             git config user.name "${GITHUB_ACTOR}"
             git config user.email "${GITHUB_ACTOR}@users.noreply.${INPUT_ORGANIZATION_DOMAIN}"
-            git add fsh-generated
-            git commit -m "🍣 re-generate"
+            git add .igtools
+            git commit -m "📋 re-generate"
             git push origin ${GITHUB_REF_NAME}
           fi
         shell: bash
