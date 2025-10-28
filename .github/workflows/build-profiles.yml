@@ -3,6 +3,7 @@ name: Build Profiles
 on:
   push:
     paths:
+      - "**/build-profiles.yml"
       - "**.fsh"
       - "**/sushi-config.yaml"
 
@@ -16,24 +17,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install pipx
+      - name: Install pipx and npm
         working-directory: .
         run: |
           sudo apt update
-          sudo apt install pipx
+          sudo apt install pipx nodejs npm
           pipx ensurepath
         shell: bash
 
       - name: Install fhirscripts
         working-directory: .
         run: pipx install -f git+https://github.com/gematik/fhir-scripts.git
-        shell: bash
-
-      - name: Install NPM
-        working-directory: .
-        run: |
-          sudo apt update
-          sudo apt install nodejs npm
         shell: bash
 
       - name: Install FSH Sushi
