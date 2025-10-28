@@ -27,6 +27,11 @@ jobs:
           pipx ensurepath
         shell: bash
 
+      - run: |
+          which nodejs
+          which npm
+          which pipx
+
       - name: Install fhirscripts
         run: pipx install -f git+https://github.com/gematik/fhir-scripts.git
         shell: bash
