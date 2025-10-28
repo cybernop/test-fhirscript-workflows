@@ -46,6 +46,7 @@ jobs:
             git config user.email "${GITHUB_ACTOR}@users.noreply.${INPUT_ORGANIZATION_DOMAIN}"
             git add .
             git commit -m "🍣 re-generate"
+            git fetch -p
             git rebase origin/${GITHUB_REF_NAME}
             git push origin ${GITHUB_REF_NAME}
           fi
