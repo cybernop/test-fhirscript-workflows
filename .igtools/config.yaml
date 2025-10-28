@@ -1,6 +1,8 @@
 current: 0.1.0
 directory: ./input
-final: null
+frozen_hash: null
+frozen_version: null
+migrated_with_version: 0.3.0
 name: ExampleIG
 prefix: REQ
 releases:
