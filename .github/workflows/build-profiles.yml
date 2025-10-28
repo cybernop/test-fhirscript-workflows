@@ -1,0 +1,59 @@
+name: Build Profiles
+
+on:
+  push:
+    paths:
+      - "**.fsh"
+      - "**/sushi-config.yaml"
+
+  workflow_dispatch:
+
+jobs:
+  build-profiles:
+    name: Build Profiles
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install pipx
+        working-directory: .
+        run: |
+          sudo apt update
+          sudo apt install pipx
+          pipx ensurepath
+        shell: bash
+
+      - name: Install fhirscripts
+        working-directory: .
+        run: pipx install -f git+https://github.com/gematik/fhir-scripts.git
+        shell: bash
+
+      - name: Install NPM
+        working-directory: .
+        run: |
+          sudo apt update
+          sudo apt install nodejs npm
+        shell: bash
+
+      - name: Install FSH Sushi
+        working-directory: .
+        run: fhirscripts install --sushi
+        shell: bash
+
+      - name: Build profiles
+        working-directory: .
+        run: fhirscripts build defs
+        shell: bash
+
+      - name: Push built profiles
+        working-directory: .
+        run: |
+          if [[ `git status --porcelain` ]]; then
+            git config user.name "${GITHUB_ACTOR}"
+            git config user.email "${GITHUB_ACTOR}@users.noreply.${INPUT_ORGANIZATION_DOMAIN}"
+            git add fsh-generated
+            git commit -m "[GEN] Generate FHIR profiles"
+            git push origin ${GITHUB_REF_NAME}
+          fi
+        shell: bash
