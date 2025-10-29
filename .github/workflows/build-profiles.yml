@@ -57,8 +57,8 @@ jobs:
           echo $(which fhir)
         continue-on-error: true
 
-      - name: Ensure path
-        run: pipx ensurepath
+      # - name: Ensure path
+      #   run: pipx ensurepath
 
       - name: Cache Firely Terminal install
         id: cache-firely
@@ -79,9 +79,9 @@ jobs:
 
       - name: Install Firely Terminal
         if: steps.cache-firely.outputs.cache-hit != 'true'
+          # sudo apt update
+          # sudo apt install dotnet-sdk-8.0
         run: |
-          sudo apt update
-          sudo apt install dotnet-sdk-8.0
           dotnet tool install -g firely.terminal
 
       - run: |
