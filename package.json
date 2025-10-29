@@ -1,0 +1,11 @@
+{
+    "name": "fhir.example",
+    "version": "0.1.0",
+    "author": "Example Publisher",
+    "fhirVersions": [
+        "4.0.1"
+    ],
+    "dependencies": {
+        "de.gematik.epa.medication": "1.2.0"
+    }
+}
