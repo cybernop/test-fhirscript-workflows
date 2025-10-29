@@ -61,13 +61,13 @@ jobs:
       #   run: pipx ensurepath
 
       - name: Cache Firely Terminal install
-        id: cache-firely
+        id: cache-firely-terminal
         uses: actions/cache@v4
         with:
             # /usr/bin/dotnet
           path: |
             /home/runner/.dotnet/tools/fhir
-          key: ${{ runner.os }}-firely
+          key: ${{ runner.os }}-firely-terminal
 
       - run: |
           echo $(which nodejs)
@@ -78,7 +78,7 @@ jobs:
         continue-on-error: true
 
       - name: Install Firely Terminal
-        if: steps.cache-firely.outputs.cache-hit != 'true'
+        if: steps.cache-firely-terminal.outputs.cache-hit != 'true'
           # sudo apt update
           # sudo apt install dotnet-sdk-8.0
         run: |
@@ -105,7 +105,16 @@ jobs:
           echo $(which fhir)
         continue-on-error: true
 
+
+      - name: Cache FHIR Cache
+        id: cache-fhir-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.fhir/packages
+          key: ${{ runner.os }}-fhir-cache-${{ hashFiles('**/package.json') }}
+
       - name: Restore FHIR Cache
+        if: steps.cache-fhir-cache.outputs.cache-hit != 'true'
         run: fhir restore
 
       - name: Install fhirscripts
