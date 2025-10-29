@@ -32,7 +32,11 @@ jobs:
         run: pipx install -f git+https://github.com/gematik/fhir-scripts.git
 
       - name: Install Firely Terminal and FSH Sushi
-        run: fhirscripts install --sushi --firely-terminal
+        if: steps.cache-firely-terminal.outputs.cache-hit != 'true'
+        run: fhirscripts install --firely-terminal
+
+      - name: Install Firely Terminal and FSH Sushi
+        run: fhirscripts install --sushi
 
       - name: Cache FHIR Cache
         id: cache-fhir-cache
