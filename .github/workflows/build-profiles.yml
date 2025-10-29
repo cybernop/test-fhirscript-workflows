@@ -20,6 +20,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - run: |
+          which nodejs
+          which npm
+          which pipx
+          which dotnet
+          which fhir
+
       - name: Cache pipx install
         id: cache-pipx
         uses: actions/cache@v4
@@ -27,11 +34,25 @@ jobs:
           path: /usr/local/bin/pipx
           key: ${{ runner.os }}-pipx
 
+      - run: |
+          which nodejs
+          which npm
+          which pipx
+          which dotnet
+          which fhir
+
       - name: Install pipx
         if: steps.cache-pipx.outputs.cache-hit != 'true'
         run: |
           sudo apt update
           sudo apt install pipx
+
+      - run: |
+          which nodejs
+          which npm
+          which pipx
+          which dotnet
+          which fhir
 
       - name: Ensure path
         run: pipx ensurepath
@@ -45,12 +66,26 @@ jobs:
             /home/runner/.dotnet/tools/fhir
           key: ${{ runner.os }}-firely
 
+      - run: |
+          which nodejs
+          which npm
+          which pipx
+          which dotnet
+          which fhir
+
       - name: Install Firely Terminal
         if: steps.cache-firely.outputs.cache-hit != 'true'
         run: |
           sudo apt update
           sudo apt install dotnet-sdk-8.0
           dotnet tool install -g firely.terminal
+
+      - run: |
+          which nodejs
+          which npm
+          which pipx
+          which dotnet
+          which fhir
 
       - name: Install npm
         run: |
