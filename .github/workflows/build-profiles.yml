@@ -32,34 +32,39 @@ jobs:
         run: |
           sudo apt update
           sudo apt install pipx
-        shell: bash
 
       - name: Ensure path
         run: pipx ensurepath
-        shell: bash
 
       - name: Install npm
         run: |
           sudo apt update
           sudo apt install nodejs npm
-        shell: bash
+          sudo apt update
+          sudo apt install dotnet-sdk-8.0
+
+
+      - name: Install Firely Terminal
+        run: dotnet tool install -g firely.terminal
 
       - run: |
           which nodejs
           which npm
           which pipx
+          which dotnet
+          which fhir
+
+      - name: Restore FHIR Cache
+        run: fhir restore
 
       - name: Install fhirscripts
         run: pipx install -f git+https://github.com/gematik/fhir-scripts.git
-        shell: bash
 
       - name: Install FSH Sushi
         run: fhirscripts install --sushi
-        shell: bash
 
       - name: Build profiles
         run: fhirscripts build defs
-        shell: bash
 
       - name: Push changes
         run: |
@@ -72,4 +77,3 @@ jobs:
             git rebase origin/${GITHUB_REF_NAME}
             git push origin ${GITHUB_REF_NAME}
           fi
-        shell: bash
