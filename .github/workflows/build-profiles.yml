@@ -20,27 +20,28 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Cache APT packages
-        id: cache-apt
+      - name: Cache pipx install
+        id: cache-pipx
         uses: actions/cache@v4
-        env:
-          cache-name:
         with:
-          path: |
-            /usr/bin/nodejs
-            /usr/local/bin/npm
-            /usr/local/bin/pipx
-          key: ${{ runner.os }}-pipx-npm
+          path: /usr/local/bin/pipx
+          key: ${{ runner.os }}-pipx
 
-      - name: Install pipx and npm
-        if: steps.cache-apt.outputs.cache-hit != 'true'
+      - name: Install pipx
+        if: steps.cache-pipx.outputs.cache-hit != 'true'
         run: |
           sudo apt update
-          sudo apt install pipx nodejs npm
+          sudo apt install pipx
         shell: bash
 
       - name: Ensure path
         run: pipx ensurepath
+        shell: bash
+
+      - name: Install npm
+        run: |
+          sudo apt update
+          sudo apt install nodejs npm
         shell: bash
 
       - run: |
