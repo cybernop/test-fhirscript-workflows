@@ -43,15 +43,15 @@ jobs:
         run: pipx install -f git+https://github.com/gematik/fhir-scripts.git
         shell: bash
 
-      - name: Install FSH Sushi
+      - name: Install igtools
         run: fhirscripts install --sushi --igtools
         shell: bash
 
-      - name: Build profiles
+      - name: Process requirements
         run: fhirscripts build defs --only-req
         shell: bash
 
-      - name: Push built profiles
+      - name: Push changes
         run: |
           if [[ `git status --porcelain` ]]; then
             git config user.name "${GITHUB_ACTOR}"
