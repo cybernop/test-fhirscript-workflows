@@ -3,7 +3,7 @@ name: Build Profiles
 on:
   push:
     paths:
-      - "**/build-profiles.yml"
+      - "**/build-profiles2.yml"
       - "**.fsh"
       - "**/sushi-config.yaml"
 
@@ -14,4 +14,4 @@ permissions:
 
 jobs:
   build-profiles:
-    uses: ./.github/workflows/build-profiles.yml
+    uses: gematik/fhir-scripts/.github/workflows/build-profiles.yml@feature/github-workflows

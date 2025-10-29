@@ -3,7 +3,7 @@ name: Process Requirements
 on:
   push:
     paths:
-      - "**/process-requirements.yml"
+      - "**/process-requirements2.yml"
       - "**.md"
 
   workflow_dispatch:
@@ -13,4 +13,4 @@ permissions:
 
 jobs:
   build-profiles:
-    uses: ./.github/workflows/process-requirements.yml
+    uses: gematik/fhir-scripts/.github/workflows/process-requirements.yml@feature/github-workflows
