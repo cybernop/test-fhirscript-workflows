@@ -19,11 +19,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Cache APT packages
+        id: cache-apt
+        uses: actions/cache@v4
+        env:
+          cache-name:
+        with:
+          path:
+            - /usr/local/bin/pipx
+          key: ${{ runner.os }}-pipx
+
       - name: Install pipx
+        if: steps.cache-apt.outputs.cache-hit != 'true'
         run: |
           sudo apt update
           sudo apt install pipx
-          pipx ensurepath
+        shell: bash
+
+      - name: Ensure path
+        run: pipx ensurepath
         shell: bash
 
       - name: Install fhirscripts
