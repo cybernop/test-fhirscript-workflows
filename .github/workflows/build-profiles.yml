@@ -21,11 +21,11 @@ jobs:
         uses: actions/checkout@v4
 
       - run: |
-          which nodejs
-          which npm
-          which pipx
-          which dotnet
-          which fhir
+          echo $(which nodejs)
+          echo $(which npm)
+          echo $(which pipx)
+          echo $(which dotnet)
+          echo $(which fhir)
         continue-on-error: true
 
       - name: Cache pipx install
@@ -36,11 +36,11 @@ jobs:
           key: ${{ runner.os }}-pipx
 
       - run: |
-          which nodejs
-          which npm
-          which pipx
-          which dotnet
-          which fhir
+          echo $(which nodejs)
+          echo $(which npm)
+          echo $(which pipx)
+          echo $(which dotnet)
+          echo $(which fhir)
         continue-on-error: true
 
       - name: Install pipx
@@ -50,11 +50,11 @@ jobs:
           sudo apt install pipx
 
       - run: |
-          which nodejs
-          which npm
-          which pipx
-          which dotnet
-          which fhir
+          echo $(which nodejs)
+          echo $(which npm)
+          echo $(which pipx)
+          echo $(which dotnet)
+          echo $(which fhir)
         continue-on-error: true
 
       - name: Ensure path
@@ -70,11 +70,11 @@ jobs:
           key: ${{ runner.os }}-firely
 
       - run: |
-          which nodejs
-          which npm
-          which pipx
-          which dotnet
-          which fhir
+          echo $(which nodejs)
+          echo $(which npm)
+          echo $(which pipx)
+          echo $(which dotnet)
+          echo $(which fhir)
         continue-on-error: true
 
       - name: Install Firely Terminal
@@ -85,11 +85,11 @@ jobs:
           dotnet tool install -g firely.terminal
 
       - run: |
-          which nodejs
-          which npm
-          which pipx
-          which dotnet
-          which fhir
+          echo $(which nodejs)
+          echo $(which npm)
+          echo $(which pipx)
+          echo $(which dotnet)
+          echo $(which fhir)
         continue-on-error: true
 
       - name: Install npm
@@ -98,11 +98,11 @@ jobs:
           sudo apt install nodejs npm
 
       - run: |
-          which nodejs
-          which npm
-          which pipx
-          which dotnet
-          which fhir
+          echo $(which nodejs)
+          echo $(which npm)
+          echo $(which pipx)
+          echo $(which dotnet)
+          echo $(which fhir)
         continue-on-error: true
 
       - name: Restore FHIR Cache
