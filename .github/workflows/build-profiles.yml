@@ -28,12 +28,12 @@ jobs:
           echo $(which fhir)
         continue-on-error: true
 
-      - name: Cache pipx install
-        id: cache-pipx
-        uses: actions/cache@v4
-        with:
-          path: /usr/local/bin/pipx
-          key: ${{ runner.os }}-pipx
+      # - name: Cache pipx install
+      #   id: cache-pipx
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: /usr/local/bin/pipx
+      #     key: ${{ runner.os }}-pipx
 
       - run: |
           echo $(which nodejs)
@@ -43,11 +43,11 @@ jobs:
           echo $(which fhir)
         continue-on-error: true
 
-      - name: Install pipx
-        if: steps.cache-pipx.outputs.cache-hit != 'true'
-        run: |
-          sudo apt update
-          sudo apt install pipx
+      # - name: Install pipx
+      #   if: steps.cache-pipx.outputs.cache-hit != 'true'
+      #   run: |
+      #     sudo apt update
+      #     sudo apt install pipx
 
       - run: |
           echo $(which nodejs)
@@ -64,8 +64,8 @@ jobs:
         id: cache-firely
         uses: actions/cache@v4
         with:
+            # /usr/bin/dotnet
           path: |
-            /usr/bin/dotnet
             /home/runner/.dotnet/tools/fhir
           key: ${{ runner.os }}-firely
 
@@ -92,10 +92,10 @@ jobs:
           echo $(which fhir)
         continue-on-error: true
 
-      - name: Install npm
-        run: |
-          sudo apt update
-          sudo apt install nodejs npm
+      # - name: Install npm
+      #   run: |
+      #     sudo apt update
+      #     sudo apt install nodejs npm
 
       - run: |
           echo $(which nodejs)
