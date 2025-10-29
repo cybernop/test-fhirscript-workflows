@@ -29,4 +29,4 @@ jobs:
         run: fhirscripts build defs --only-req
 
       - name: Push changes
-        uses: ./github/actions/push-changes
+        uses: ./.github/actions/push-changes
