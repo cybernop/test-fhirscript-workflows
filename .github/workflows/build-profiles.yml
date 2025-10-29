@@ -36,16 +36,26 @@ jobs:
       - name: Ensure path
         run: pipx ensurepath
 
+      - name: Cache Firely Terminal install
+        id: cache-firely
+        uses: actions/cache@v4
+        with:
+          path: |
+            /usr/bin/dotnet
+            /home/runner/.dotnet/tools/fhir
+          key: ${{ runner.os }}-firely
+
+      - name: Install Firely Terminal
+        if: steps.cache-firely.outputs.cache-hit != 'true'
+        run: |
+          sudo apt update
+          sudo apt install dotnet-sdk-8.0
+          dotnet tool install -g firely.terminal
+
       - name: Install npm
         run: |
           sudo apt update
           sudo apt install nodejs npm
-          sudo apt update
-          sudo apt install dotnet-sdk-8.0
-
-
-      - name: Install Firely Terminal
-        run: dotnet tool install -g firely.terminal
 
       - run: |
           which nodejs
