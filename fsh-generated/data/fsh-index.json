@@ -1,5 +1,13 @@
 [
   {
+    "outputFile": "Medication-TestMedication.json",
+    "fshName": "TestMedication",
+    "fshType": "Instance",
+    "fshFile": "medication.fsh",
+    "startLine": 1,
+    "endLine": 7
+  },
+  {
     "outputFile": "Patient-PatientExample.json",
     "fshName": "PatientExample",
     "fshType": "Instance",

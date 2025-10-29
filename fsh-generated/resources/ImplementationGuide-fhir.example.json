@@ -21,6 +21,14 @@
   "fhirVersion": [
     "4.0.1"
   ],
+  "dependsOn": [
+    {
+      "packageId": "de.gematik.epa.medication",
+      "version": "1.2.0",
+      "uri": "https://gematik.de/fhir/epa-medication/ImplementationGuide/de.gematik.epa.medication",
+      "id": "de_gematik_epa_medication"
+    }
+  ],
   "definition": {
     "resource": [
       {
@@ -38,6 +46,13 @@
         "name": "PatientExample",
         "description": "An example of a patient with a license to krill.",
         "exampleCanonical": "http://example.org/StructureDefinition/MyPatient"
+      },
+      {
+        "reference": {
+          "reference": "Medication/TestMedication"
+        },
+        "name": "TestMedication",
+        "exampleBoolean": true
       }
     ],
     "page": {
