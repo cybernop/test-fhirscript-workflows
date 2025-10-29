@@ -28,10 +28,11 @@ jobs:
             /home/runner/.dotnet/tools/fhir
           key: ${{ runner.os }}-firely-terminal
 
-      - name: Install Firely Terminal
-        if: steps.cache-firely-terminal.outputs.cache-hit != 'true'
-        run: |
-          dotnet tool install -g firely.terminal
+      - name: Install fhirscripts
+        run: pipx install -f git+https://github.com/gematik/fhir-scripts.git
+
+      - name: Install Firely Terminal and FSH Sushi
+        run: fhirscripts install --sushi --firely-terminal
 
       - name: Cache FHIR Cache
         id: cache-fhir-cache
@@ -43,12 +44,6 @@ jobs:
       - name: Restore FHIR Cache
         if: steps.cache-fhir-cache.outputs.cache-hit != 'true'
         run: fhir restore
-
-      - name: Install fhirscripts
-        run: pipx install -f git+https://github.com/gematik/fhir-scripts.git
-
-      - name: Install FSH Sushi
-        run: fhirscripts install --sushi
 
       - name: Build profiles
         run: fhirscripts build defs
