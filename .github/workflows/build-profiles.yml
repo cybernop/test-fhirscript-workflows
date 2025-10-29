@@ -20,91 +20,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - run: |
-          echo $(which nodejs)
-          echo $(which npm)
-          echo $(which pipx)
-          echo $(which dotnet)
-          echo $(which fhir)
-        continue-on-error: true
-
-      # - name: Cache pipx install
-      #   id: cache-pipx
-      #   uses: actions/cache@v4
-      #   with:
-      #     path: /usr/local/bin/pipx
-      #     key: ${{ runner.os }}-pipx
-
-      - run: |
-          echo $(which nodejs)
-          echo $(which npm)
-          echo $(which pipx)
-          echo $(which dotnet)
-          echo $(which fhir)
-        continue-on-error: true
-
-      # - name: Install pipx
-      #   if: steps.cache-pipx.outputs.cache-hit != 'true'
-      #   run: |
-      #     sudo apt update
-      #     sudo apt install pipx
-
-      - run: |
-          echo $(which nodejs)
-          echo $(which npm)
-          echo $(which pipx)
-          echo $(which dotnet)
-          echo $(which fhir)
-        continue-on-error: true
-
-      # - name: Ensure path
-      #   run: pipx ensurepath
-
       - name: Cache Firely Terminal install
         id: cache-firely-terminal
         uses: actions/cache@v4
         with:
-            # /usr/bin/dotnet
           path: |
             /home/runner/.dotnet/tools/fhir
           key: ${{ runner.os }}-firely-terminal
 
-      - run: |
-          echo $(which nodejs)
-          echo $(which npm)
-          echo $(which pipx)
-          echo $(which dotnet)
-          echo $(which fhir)
-        continue-on-error: true
-
       - name: Install Firely Terminal
         if: steps.cache-firely-terminal.outputs.cache-hit != 'true'
-          # sudo apt update
-          # sudo apt install dotnet-sdk-8.0
         run: |
           dotnet tool install -g firely.terminal
-
-      - run: |
-          echo $(which nodejs)
-          echo $(which npm)
-          echo $(which pipx)
-          echo $(which dotnet)
-          echo $(which fhir)
-        continue-on-error: true
-
-      # - name: Install npm
-      #   run: |
-      #     sudo apt update
-      #     sudo apt install nodejs npm
-
-      - run: |
-          echo $(which nodejs)
-          echo $(which npm)
-          echo $(which pipx)
-          echo $(which dotnet)
-          echo $(which fhir)
-        continue-on-error: true
-
 
       - name: Cache FHIR Cache
         id: cache-fhir-cache
