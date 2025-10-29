@@ -18,3 +18,4 @@ runs:
           git rebase origin/${GITHUB_REF_NAME}
           git push origin ${GITHUB_REF_NAME}
         fi
+      shell: bash
