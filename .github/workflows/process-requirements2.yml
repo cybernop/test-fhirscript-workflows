@@ -1,0 +1,16 @@
+name: Process Requirements
+
+on:
+  push:
+    paths:
+      - "**/process-requirements.yml"
+      - "**.md"
+
+  workflow_dispatch:
+
+# permissions:
+#   contents: write
+
+jobs:
+  build-profiles:
+    uses: ./.github/workflows/process-requirements.yml

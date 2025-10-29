@@ -1,0 +1,17 @@
+name: Build Profiles
+
+on:
+  push:
+    paths:
+      - "**/build-profiles.yml"
+      - "**.fsh"
+      - "**/sushi-config.yaml"
+
+  workflow_dispatch:
+
+# permissions:
+#   contents: write
+
+jobs:
+  build-profiles:
+    uses: ./.github/workflows/build-profiles.yml

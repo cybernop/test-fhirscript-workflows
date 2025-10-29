@@ -1,13 +1,7 @@
 name: Build Profiles
 
 on:
-  push:
-    paths:
-      - "**/build-profiles.yml"
-      - "**.fsh"
-      - "**/sushi-config.yaml"
-
-  workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: write
