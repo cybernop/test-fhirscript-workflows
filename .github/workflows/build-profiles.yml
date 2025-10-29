@@ -26,10 +26,10 @@ jobs:
         env:
           cache-name:
         with:
-          path:
-            - /usr/bin/nodejs
-            - /usr/local/bin/npm
-            - /usr/local/bin/pipx
+          path: |
+            /usr/bin/nodejs
+            /usr/local/bin/npm
+            /usr/local/bin/pipx
           key: ${{ runner.os }}-pipx-npm
 
       - name: Install pipx and npm
