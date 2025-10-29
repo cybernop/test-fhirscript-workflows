@@ -19,32 +19,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Cache pipx install
-        id: cache-pipx
-        uses: actions/cache@v4
-        env:
-          cache-name:
-        with:
-          path: /usr/local/bin/pipx
-          key: ${{ runner.os }}-pipx
-
-      - name: Install pipx
-        if: steps.cache-pipx.outputs.cache-hit != 'true'
-        run: |
-          sudo apt update
-          sudo apt install pipx
-        shell: bash
-
-      - name: Ensure path
-        run: pipx ensurepath
-        shell: bash
-
       - name: Install fhirscripts
         run: pipx install -f git+https://github.com/gematik/fhir-scripts.git
         shell: bash
 
       - name: Install igtools
-        run: fhirscripts install --sushi --igtools
+        run: fhirscripts install --igtools
         shell: bash
 
       - name: Process requirements
