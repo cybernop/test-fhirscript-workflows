@@ -26,6 +26,7 @@ jobs:
           which pipx
           which dotnet
           which fhir
+        continue-on-error: true
 
       - name: Cache pipx install
         id: cache-pipx
@@ -40,6 +41,7 @@ jobs:
           which pipx
           which dotnet
           which fhir
+        continue-on-error: true
 
       - name: Install pipx
         if: steps.cache-pipx.outputs.cache-hit != 'true'
@@ -53,6 +55,7 @@ jobs:
           which pipx
           which dotnet
           which fhir
+        continue-on-error: true
 
       - name: Ensure path
         run: pipx ensurepath
@@ -72,6 +75,7 @@ jobs:
           which pipx
           which dotnet
           which fhir
+        continue-on-error: true
 
       - name: Install Firely Terminal
         if: steps.cache-firely.outputs.cache-hit != 'true'
@@ -86,6 +90,7 @@ jobs:
           which pipx
           which dotnet
           which fhir
+        continue-on-error: true
 
       - name: Install npm
         run: |
@@ -98,6 +103,7 @@ jobs:
           which pipx
           which dotnet
           which fhir
+        continue-on-error: true
 
       - name: Restore FHIR Cache
         run: fhir restore
